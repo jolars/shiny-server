@@ -1,0 +1,8 @@
+---
+title: "My Shiny Apps"
+runtime: shiny
+---
+
+My [Eulerr](/eulerr/) app.
+
+![Eulerr](eulerr.gif)
