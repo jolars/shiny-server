@@ -3,10 +3,10 @@ library(eulerr)
 
 shinyUI(
   navbarPage(
-    "eulerr",
+    HTML(paste0("<a href=", shQuote("http://jolars.co/"), ">", "Home", "</a>")),
     inverse = TRUE,
     tabPanel(
-      "App",
+      "eulerr",
       fluidPage(
         fluidRow(
           column(
