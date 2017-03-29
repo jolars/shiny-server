@@ -1,0 +1,11 @@
+---
+title: "Shiny applications"
+author: "Johan Larsson"
+date: "March 29, 2017"
+output: html_document
+runtime: shiny
+---
+
+# Shiny packages
+
+[Eulerr](/shiny/eulerr/)
