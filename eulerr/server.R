@@ -87,7 +87,7 @@ shinyServer(function(input, output, session) {
     if (!is.null(input$title))
       ll$main <- input$title
     if (input$key)
-      ll$key <- list(space = input$key_space)
+      ll$auto.key <- list(space = input$key_space)
     ll$fontface <- switch(
       input$fontface,
       Plain = 1,

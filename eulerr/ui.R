@@ -185,10 +185,14 @@ shinyUI(
           column(
             2,
             wellPanel(
-              p(strong(a(href = "https://CRAN.R-project.org/package=eulerr", "eulerr on the R package repository CRAN"))),
-              p(strong(a(href = "http://larssonjohan.com", "My personal website"))),
-              p(strong(a(href = "https://github.com/jolars/eulerr", "The Github repository for the r package"))),
-              p(strong(a(href = "https://github.com/jolars/eulerr_shiny", "The Github repository for the shiny app")))
+              p(strong(a(href = "https://CRAN.R-project.org/package=eulerr",
+                         "eulerr on the R package repository CRAN"))),
+              p(strong(a(href = "http://larssonjohan.com",
+                         "My personal website"))),
+              p(strong(a(href = "https://github.com/jolars/eulerr",
+                         "The Github repository for the r package"))),
+              p(strong(a(href = "https://github.com/jolars/eulerr_shiny",
+                         "The Github repository for the shiny app")))
             )
           )
         )
@@ -204,7 +208,8 @@ shinyUI(
             wellPanel(
               h4("2017-07-30"),
               p("Added the option to supply a seed to enable reproducible layouts"),
-              p(a(href = "https://github.com/jolars/eulerr/releases/tag/v2.0.0", "Updated eulerr to version 2.0.0"))
+              p(a(href = "https://github.com/jolars/eulerr/releases/tag/v2.0.0",
+                  "Updated eulerr to version 2.0.0"))
             )
           )
         )
