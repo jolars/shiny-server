@@ -55,15 +55,16 @@ shinyServer(function(input, output, session) {
   })
 
   euler_fit <- reactive({
-    euler(combos(),
-          input = input$input_type)
+    if (input$seed != "")
+      set.seed(input$seed)
+    euler(combos(), input = input$input_type)
   })
 
   output$table <- renderTable({
     f <- euler_fit()
     df <- with(f, data.frame(Input = original.values,
-                       Fit = fitted.values,
-                       Error = region_error))
+                             Fit = fitted.values,
+                             Error = region_error))
     colnames(df) <- c("Input", "Fit", "Region error")
     df
   }, rownames = TRUE, width = "100%")

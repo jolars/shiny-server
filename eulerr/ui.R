@@ -15,10 +15,20 @@ shinyUI(
             wellPanel(
               p("String together combinations by joining them
                 with an ampersand (&)."),
-              radioButtons(
-                "input_type",
-                "Type of relationships",
-                c("Disjoint combinations" = "disjoint", "Unions" = "union")
+              splitLayout(
+                cellWidths = c("70%", "30%"),
+                radioButtons(
+                  "input_type",
+                  "Type of relationships",
+                  c("Disjoint combinations" = "disjoint", "Unions" = "union")
+                ),
+                textInput(
+                  "seed",
+                  "Seed",
+                  value = "",
+                  placeholder = NULL,
+                  width = "100%"
+                )
               ),
               splitLayout(
                 cellWidths = c("70%", "30%"),
@@ -179,6 +189,22 @@ shinyUI(
               p(strong(a(href = "http://larssonjohan.com", "My personal website"))),
               p(strong(a(href = "https://github.com/jolars/eulerr", "The Github repository for the r package"))),
               p(strong(a(href = "https://github.com/jolars/eulerr_shiny", "The Github repository for the shiny app")))
+            )
+          )
+        )
+      )
+    ),
+    tabPanel(
+      "News",
+      fluidPage(
+        fluidRow(
+          column(
+            6,
+            offset = 3,
+            wellPanel(
+              h4("2017-07-30"),
+              p("Added the option to supply a seed to enable reproducible layouts"),
+              p(a(href = "https://github.com/jolars/eulerr/releases/tag/v2.0.0", "Updated eulerr to version 2.0.0"))
             )
           )
         )
