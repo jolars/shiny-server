@@ -3,7 +3,7 @@ library(eulerr)
 
 shinyUI(
   navbarPage(
-    HTML(paste0("<a href=", shQuote("http://jolars.co/shiny/"), ">", "Home", "</a>")),
+    HTML(paste0("<a href=", shQuote("http://jolars.co"), ">", "Home", "</a>")),
     windowTitle = "eulerr",
     inverse = TRUE,
     tabPanel(
