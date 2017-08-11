@@ -1,7 +1,7 @@
 # My shiny server
 
 This is the github repository for my shiny server that hosts my shiny 
-apps hosted [here](http://jolars.co/shiny/).
+apps hosted at [jolars.co](http://jolars.co).
 
 ## eulerr
 
