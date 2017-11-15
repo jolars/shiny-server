@@ -15,6 +15,12 @@ shinyUI(
             wellPanel(
               p("String together combinations by joining them
                 with an ampersand (&)."),
+              radioButtons(
+                "shape",
+                "Shape",
+                c("Circle" = "circle", "Ellipse" = "ellipse"),
+                inline = TRUE
+              ),
               splitLayout(
                 cellWidths = c("70%", "30%"),
                 radioButtons(
@@ -57,13 +63,13 @@ shinyUI(
               fluidRow(
                 column(
                   6,
-                  strong("Stress"),
+                  strong("stress"),
                   textOutput("stress")
                 ),
                 column(
                   6,
-                  strong("Diag error"),
-                  textOutput("diag_error")
+                  strong("diagError"),
+                  textOutput("diagError")
                 )
               )
             ),
@@ -77,18 +83,22 @@ shinyUI(
             3,
             textInput("title", "Title", width = "100%"),
             strong("Colors"),
-            em(p("A comma-separated list of ", a(href = "https://stat.columbia.edu/~tzheng/files/Rcolor.pdf", "x11"),
-              "or", a(href = "https://en.wikipedia.org/wiki/Web_colors#Hex_triplet", "hex colors."))),
+            em(p("A comma-separated list of ",
+                 a(href = "https://stat.columbia.edu/~tzheng/files/Rcolor.pdf",
+                   "x11"),
+              "or",
+              a(href = "https://en.wikipedia.org/wiki/Web_colors#Hex_triplet",
+                "hex colors."))),
             textInput(
               inputId = "fill",
               label = NULL,
               value = "",
-              placeholder = "steelblue4, #CD5555",
+              placeholder = "grey70, white, steelblue4",
               width = "100%"
             ),
-            sliderInput("opacity", "Opacity", min = 0, max = 1, value = 0.4,
+            sliderInput("alpha", "Opacity", min = 0, max = 1, value = 0.4,
                         width = "100%"),
-            checkboxInput("counts", "Show counts"),
+            checkboxInput("quantities", "Show quantities"),
             fluidRow(
               column(
                 4,
@@ -107,6 +117,7 @@ shinyUI(
               "fontface",
               "Font face",
               list("Plain", "Bold", "Italic", "Bold italic"),
+              selected = "Bold",
               inline = TRUE
             ),
             radioButtons(
@@ -115,8 +126,36 @@ shinyUI(
               list("Solid", "Varying", "None"),
               inline = TRUE
             ),
-
+            numericInput(
+              inputId = "pointsize",
+              label = "Pointsize",
+              value = 12,
+              min = 1,
+              max = 100,
+              step = 1,
+              width = "100%"
+            ),
             hr(),
+            fluidRow(
+              column(
+                6,
+                numericInput(
+                  inputId = "width",
+                  label = "Width (inches)",
+                  value = 6,
+                  width = "100%"
+                )
+              ),
+              column(
+                6,
+                numericInput(
+                  inputId = "height",
+                  label = "Height (inches)",
+                  value = 4,
+                  width = "100%"
+                )
+              )
+            ),
             fluidRow(
               column(
                 6,
@@ -191,7 +230,7 @@ shinyUI(
                          "My personal website"))),
               p(strong(a(href = "https://github.com/jolars/eulerr",
                          "The Github repository for the r package"))),
-              p(strong(a(href = "https://github.com/jolars/eulerr_shiny",
+              p(strong(a(href = "https://github.com/jolars/shiny-server",
                          "The Github repository for the shiny app")))
             )
           )
@@ -206,6 +245,10 @@ shinyUI(
             6,
             offset = 3,
             wellPanel(
+              h4("2017-11-15"),
+              p("Updated eulerr to 3.0.0, now enabling the use of ellipses."),
+              p("Added option to set pointsize (mostly for fonts)."),
+              p("Added settings for height and width when downloading plots."),
               h4("2017-07-30"),
               p("Added the option to supply a seed to enable reproducible layouts"),
               p(a(href = "https://github.com/jolars/eulerr/releases/tag/v2.0.0",

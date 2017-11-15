@@ -57,15 +57,16 @@ shinyServer(function(input, output, session) {
   euler_fit <- reactive({
     if (input$seed != "")
       set.seed(input$seed)
-    euler(combos(), input = input$input_type)
+    euler(combos(), input = input$input_type, shape = input$shape,
+          control = list(extraopt = FALSE))
   })
 
   output$table <- renderTable({
     f <- euler_fit()
     df <- with(f, data.frame(Input = original.values,
                              Fit = fitted.values,
-                             Error = region_error))
-    colnames(df) <- c("Input", "Fit", "Region error")
+                             Error = regionError))
+    colnames(df) <- c("Input", "Fit", "regionError")
     df
   }, rownames = TRUE, width = "100%")
 
@@ -73,8 +74,8 @@ shinyServer(function(input, output, session) {
     round(euler_fit()$stress, 2)
   })
 
-  output$diag_error <- renderText({
-    round(euler_fit()$diag_error, 2)
+  output$diagError <- renderText({
+    round(euler_fit()$diagError, 2)
   })
 
   euler_plot <- reactive({
@@ -95,9 +96,12 @@ shinyServer(function(input, output, session) {
       Italic = 3,
       "Bold italic" = 4
     )
-    ll$counts <- input$counts
-    ll$fill_opacity <- input$opacity
+    ll$quantities <- input$quantities
+    ll$fill_alpha <- input$alpha
     ll$lty <- switch(input$borders, Solid = 1, Varying = 1:6, None = 0)
+    ll$par.settings <- list(
+      fontsize = list(text = input$pointsize,
+                      points = ceiling(input$pointsize*2/3)))
 
     do.call(plot, ll)
   })
@@ -113,8 +117,16 @@ shinyServer(function(input, output, session) {
     },
     content = function(file) {
       switch(input$savetype,
-             pdf = pdf(file),
-             png = png(file, type = "cairo", width = 648, height = 648))
+             pdf = pdf(file,
+                       width = input$width,
+                       height = input$height,
+                       pointsize = input$pointsize),
+             png = png(file, type = "cairo",
+                       width = input$width,
+                       height = input$height,
+                       pointsize = input$pointsize,
+                       units = "in",
+                       res = 300))
       print(euler_plot())
       dev.off()
     }
